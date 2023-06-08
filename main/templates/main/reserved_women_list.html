@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="card-section">
+  <div class="container">
+    <div class="card border-0 mt-3">
+      <div class="card-body">
+        <h4 class="page-title text-center">Capital Market Authority Tenders portal</h4>
+      </div>
+    </div>
+    <div>
+      <div class="table-responsive">
+        {% if reserved_women %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tender Ref</th>
+              <th>Tender Title</th>
+              <th>Tender File(s)</th>
+              <th>Addendums</th>
+              <th>Clarifications</th>
+              <th>Drawings</th>
+              <th>Opening</th>
+              <th>Closing</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for reserved_woman in reserved_women %}
+            <tr>
+              <td>{{ reserved_woman.tender_ref }}</td>
+              <td>{{ reserved_woman.tender_title }}</td>
+              <td>{% if reserved_woman.tender_files %}<a href="{{ reserved_woman.tender_files.url }}" target="_blank">View/Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if reserved_woman.addendums %}<a href="{{ reserved_woman.addendums.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if reserved_woman.certifications %}<a href="{{ reserved_woman.certifications.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if reserved_woman.drawings %}<a href="{{ reserved_woman.drawings.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{{ reserved_woman.opening_date }}</td>
+              <td>{{ reserved_woman.closing_date }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No reserved women tenders available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

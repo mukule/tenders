@@ -1,0 +1,50 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="card-section">
+  <div class="container">
+    <div class="card border-0 mt-3">
+      <div class="card-body">
+        <h4 class="page-title text-center">Capital Market Authority Tenders portal</h4>
+      </div>
+    </div>
+    <div>
+      <div class="table-responsive">
+        {% if open_internationals %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tender Ref</th>
+              <th>Tender Title</th>
+              <th>Tender File(s)</th>
+              <th>Addendums</th>
+              <th>Clarifications</th>
+              <th>Drawings</th>
+              <th>Opening</th>
+              <th>Closing</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for open_international in open_internationals %}
+            <tr>
+              <td>{{ open_international.tender_ref }}</td>
+              <td>{{ open_international.tender_title }}</td>
+              <td>{% if open_international.tender_files %}<a href="{{ open_international.tender_files.url }}" target="_blank">View/Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if open_international.addendums %}<a href="{{ open_international.addendums.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if open_international.certifications %}<a href="{{ open_international.certifications.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if open_international.drawings %}<a href="{{ open_international.drawings.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{{ open_international.opening_date }}</td>
+              <td>{{ open_international.closing_date }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        {% else %}
+        <p>No open international tenders available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

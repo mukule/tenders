@@ -1,1 +1,63 @@
-closed tenders
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="card-section">
+  <div class="container">
+    <div class="card border-0 mt-3">
+      <div class="card-body">
+        <h4 class="page-title text-center">Capital Market Authority Tenders portal</h4>
+      </div>
+    </div>
+    <div>
+      <div class="table-responsive">
+        {% if page_obj %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tender Ref</th>
+              <th>Tender Title</th>
+              <th>Tender File(s)</th>
+              <th>Addendums</th>
+              <th>Certifications</th>
+              <th>Drawings</th>
+              <th>Opening</th>
+              <th>Closing</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tender in page_obj %}
+            <tr>
+              <td>{{ tender.tender_ref }}</td>
+              <td>{{ tender.tender_title }}</td>
+              <td>{% if tender.tender_files %}<a href="{{ tender.tender_files.url }}" target="_blank">View/Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if tender.addendums %}<a href="{{ tender.addendums.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if tender.certifications %}<a href="{{ tender.certifications.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{% if tender.drawings %}<a href="{{ tender.drawings.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>{{ tender.opening_date }}</td>
+              <td>{{ tender.closing_date }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+        <div class="pagination-container">
+          <div class="pagination mb-5">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Previous</a>
+            {% endif %}
+            <span class="current-page" class="pagination-link">{{ page_obj.number }}</span>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Next</a>
+            {% endif %}
+          </div>
+        </div>
+        
+        {% else %}
+        <p>No closed tenders available.</p>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

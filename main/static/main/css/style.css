@@ -92,3 +92,12 @@
     color: white !important;
   }
 }
+
+.custom-search-btn {
+  background-color: var(--secondary-color); /* Set your desired button color */
+}
+
+.custom-view-all-btn {
+  background-color: var(--secondary-color); /* Set your desired button color */
+}
+

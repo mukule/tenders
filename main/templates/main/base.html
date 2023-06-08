@@ -8,6 +8,42 @@
   <title>Capital Markets authority</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="{% static 'main/css/style.css' %}">
+  <style>
+  .pagination-container {
+    display: flex;
+    justify-content: center !important;
+    margin-top: 10px;
+}
+
+.pagination {
+    display: inline-block;
+}
+
+.pagination-link {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #f2f2f2;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.pagination-link:hover {
+    background-color: #ddd;
+}
+
+.current-page {
+    display: inline-block;
+    padding: 5px 10px;
+    margin-right: 5px;
+    background-color: #c7af55;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+  </style>
 </head>
 <body>
   <div class="container">

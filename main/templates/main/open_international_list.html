@@ -23,7 +23,7 @@
               <button type="submit" class="btn btn-primary custom-search-btn border-0">Search</button>
             </div>
             <div class="col-auto">
-              <a href="{% url 'citizencontractor-list' %}" class="btn btn-primary custom-view-all-btn border-0">View all</a>
+              <a href="{% url 'open-international-list' %}" class="btn btn-primary custom-view-all-btn border-0">View all</a>
             </div>
           </form>
         </div>
@@ -79,11 +79,19 @@
               <td>{{ open_international.opening_date }}</td>
               <td>{{ open_international.closing_date }}</td>
             </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8">No open international tenders match the search criteria.</td>
+            </tr>
             {% endfor %}
           </tbody>
         </table>
         {% else %}
+        {% if request.GET.query %}
+        <p>No open international tenders match the search criteria.</p>
+        {% else %}
         <p>No open international tenders available.</p>
+        {% endif %}
         {% endif %}
       </div>
     </div>

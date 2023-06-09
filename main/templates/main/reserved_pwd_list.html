@@ -10,6 +10,24 @@
       </div>
     </div>
     <div>
+      <div class="card border-0 mb-3 mt-3 bg-light text-center">
+        <div class="card-body d-flex justify-content-center">
+          <form class="row g-3">
+            <div class="col-auto">
+              <label for="search-input" class="text-dark">Search by Tender Ref No.</label>
+            </div>
+            <div class="col-auto">
+              <input type="text" name="query" id="search-input" class="form-control" placeholder="Enter tender ref" value="{{ request.GET.query }}">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary custom-search-btn border-0">Search</button>
+            </div>
+            <div class="col-auto">
+              <a href="{% url 'reserved-pwd-list' %}" class="btn btn-primary custom-view-all-btn border-0">View all</a>
+            </div>
+          </form>
+        </div>
+      </div>
       <div class="table-responsive">
         {% if reserved_pwds %}
         <table class="table table-hover">
@@ -41,7 +59,11 @@
           </tbody>
         </table>
         {% else %}
+        {% if request.GET.query %}
+        <p>No reserved PWD tenders match the search criteria.</p>
+        {% else %}
         <p>No reserved PWD tenders available.</p>
+        {% endif %}
         {% endif %}
       </div>
     </div>

@@ -1,0 +1,85 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="card-section">
+  <div class="container">
+    <div class="card border-0 mt-3">
+      <div class="card-body">
+        <h4 class="page-title text-center">Capital Market Authority Tenders portal</h4>
+      </div>
+    </div>
+    <div>
+      <div class="card border-0 mb-3 mt-3 bg-light text-center">
+        <div class="card-body d-flex justify-content-center">
+            <form class="row g-3">
+                <div class="col-auto">
+                  <label for="search-input" class="text-dark">Search by Tender Ref No.</label>
+                </div>
+                <div class="col-auto">
+                  <input type="text" name="query" id="search-input" class="form-control" placeholder="Enter tender ref" value="{{ request.GET.query }}">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary custom-search-btn border-0">Search</button>
+                </div>
+                <div class="col-auto">
+                  <a href="{% url 'closed-tenders' %}" class="btn btn-primary custom-view-all-btn border-0">View all</a>
+                </div>
+              </form>
+        </div>
+      </div>
+      <div class="table-responsive">
+        {% if page_obj %}
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>Tender Ref</th>
+              <th>Tender Title</th>
+              <th>Category</th>
+              <th>Procurement Method</th>
+              <th>Amount(ksh)</th>
+              <th>Awarded To</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for tender in page_obj %}
+            <tr>
+              <td>{{ tender.tender_ref }}</td>
+              <td>{{ tender.tender_title }}</td>
+              <td>{{ tender.category }}</td>
+              <td>{{ tender.procurement_method }}</td>
+              <td>{{ tender.amount }}</td>
+              <td>{{ tender.awarded }}</td>
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="8">No closed and awarded tenders match the search criteria.</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+        
+        <div class="pagination-container">
+          <div class="pagination mb-5">
+            {% if page_obj.has_previous %}
+            <a href="?page={{ page_obj.previous_page_number }}" class="pagination-link">Previous</a>
+            {% endif %}
+            <span class="current-page" class="pagination-link">{{ page_obj.number }}</span>
+            {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}" class="pagination-link">Next</a>
+            {% endif %}
+          </div>
+        </div>
+        
+        {% else %}
+        {% if query %}
+        <p>No closed and awarded tenders match the search criteria.</p>
+        {% else %}
+        <p>No closed and awarded tenders available.</p>
+        {% endif %}
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

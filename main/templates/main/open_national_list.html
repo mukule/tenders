@@ -10,6 +10,24 @@
       </div>
     </div>
     <div>
+      <div class="card border-0 mb-3 mt-3 bg-light text-center">
+        <div class="card-body d-flex justify-content-center">
+          <form class="row g-3">
+            <div class="col-auto">
+              <label for="search-input" class="text-dark">Search by Tender Ref No.</label>
+            </div>
+            <div class="col-auto">
+              <input type="text" name="query" id="search-input" class="form-control" placeholder="Enter tender ref" value="{{ request.GET.query }}">
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary custom-search-btn border-0">Search</button>
+            </div>
+            <div class="col-auto">
+              <a href="{% url 'open-national-list' %}" class="btn btn-primary custom-view-all-btn border-0">View all</a>
+            </div>
+          </form>
+        </div>
+      </div>
       <div class="table-responsive">
         {% if open_nationals %}
         <table class="table table-hover">
@@ -30,10 +48,34 @@
             <tr>
               <td>{{ open_national.tender_ref }}</td>
               <td>{{ open_national.tender_title }}</td>
-              <td>{% if open_national.tender_files %}<a href="{{ open_national.tender_files.url }}" target="_blank">View/Download</a>{% else %}No file{% endif %}</td>
-              <td>{% if open_national.addendums %}<a href="{{ open_national.addendums.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
-              <td>{% if open_national.certifications %}<a href="{{ open_national.certifications.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
-              <td>{% if open_national.drawings %}<a href="{{ open_national.drawings.url }}" target="_blank">Download</a>{% else %}No file{% endif %}</td>
+              <td>
+                {% if open_national.tender_files %}
+                  <a href="{{ open_national.tender_files.url }}" target="_blank">View/Download</a>
+                {% else %}
+                  No file
+                {% endif %}
+              </td>
+              <td>
+                {% if open_national.addendums %}
+                  <a href="{{ open_national.addendums.url }}" target="_blank">Download</a>
+                {% else %}
+                  No file
+                {% endif %}
+              </td>
+              <td>
+                {% if open_national.certifications %}
+                  <a href="{{ open_national.certifications.url }}" target="_blank">Download</a>
+                {% else %}
+                  No file
+                {% endif %}
+              </td>
+              <td>
+                {% if open_national.drawings %}
+                  <a href="{{ open_national.drawings.url }}" target="_blank">Download</a>
+                {% else %}
+                  No file
+                {% endif %}
+              </td>
               <td>{{ open_national.opening_date }}</td>
               <td>{{ open_national.closing_date }}</td>
             </tr>
@@ -41,7 +83,11 @@
           </tbody>
         </table>
         {% else %}
+        {% if request.GET.query %}
+        <p>No open national tenders match the search criteria.</p>
+        {% else %}
         <p>No open national tenders available.</p>
+        {% endif %}
         {% endif %}
       </div>
     </div>

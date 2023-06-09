@@ -16,4 +16,6 @@ urlpatterns = [
     path('reserved-youth/', ReservedYouthListView.as_view(),
          name='reserved-youth-list'),
     path('closed-tenders/', closed_tenders_view, name='closed-tenders'),
+    path('closed-awarded-tenders/', views.closed_awarded_tenders_view, name='closed_awarded_tenders'),
+    path('supplier_reg/', register_supplier, name='supplier_reg'),
 ]

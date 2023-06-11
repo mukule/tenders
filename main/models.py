@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 
+
 class ProcurementMethod(models.Model):
     name = models.CharField(max_length=100)
 
@@ -14,8 +15,11 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+
+
 class CitizenContractor(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -23,10 +27,13 @@ class CitizenContractor(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -34,7 +41,8 @@ class CitizenContractor(models.Model):
 
 
 class OpenInternational(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -42,10 +50,13 @@ class OpenInternational(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -53,7 +64,8 @@ class OpenInternational(models.Model):
 
 
 class OpenNational(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -61,10 +73,13 @@ class OpenNational(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -72,7 +87,8 @@ class OpenNational(models.Model):
 
 
 class ReservedPWD(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -80,10 +96,13 @@ class ReservedPWD(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -91,7 +110,8 @@ class ReservedPWD(models.Model):
 
 
 class ReservedWomen(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -99,10 +119,13 @@ class ReservedWomen(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
@@ -110,7 +133,8 @@ class ReservedWomen(models.Model):
 
 
 class ReservedYouth(models.Model):
-    tender_title = models.CharField(max_length=100, null=True, default='Untitled')
+    tender_title = models.CharField(
+        max_length=100, null=True, default='Untitled')
     tender_ref = models.CharField(max_length=100, unique=True)
     tender_files = models.FileField(upload_to='tenders/')
     addendums = models.FileField(upload_to='addendums/', blank=True)
@@ -118,36 +142,46 @@ class ReservedYouth(models.Model):
     drawings = models.FileField(upload_to='drawings/', blank=True)
     opening_date = models.DateTimeField()
     closing_date = models.DateTimeField()
-    procurement_method = models.ForeignKey(ProcurementMethod, on_delete=models.SET_NULL, null=True)
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True)
+    procurement_method = models.ForeignKey(
+        ProcurementMethod, on_delete=models.SET_NULL, null=True)
+    category = models.ForeignKey(
+        Category, on_delete=models.SET_NULL, null=True)
     awarded_status = models.BooleanField(default=False)
-    amount = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    amount = models.DecimalField(
+        max_digits=10, decimal_places=2, null=True, blank=True)
     awarded = models.CharField(max_length=100, null=True, blank=True)
 
     def __str__(self):
         return self.tender_title
+
 
 class Product_category(models.Model):
     name = models.CharField(max_length=100)
 
     def __str__(self):
         return self.name
-    
+
+
 class Supplier(models.Model):
+    TITLE_CHOICES = [
+        ('Mr', 'Mr'),
+        ('Ms', 'Ms'),
+    ]
+
     company_name = models.CharField(max_length=100)
-    duns_number = models.CharField(max_length=20)
+    duns_number = models.CharField(max_length=20, null=True, blank=True)
     language = models.CharField(max_length=50)
     tax_jurisdiction_code = models.CharField(max_length=50)
     currency = models.CharField(max_length=50)
     vendor_category = models.ForeignKey(Category, on_delete=models.CASCADE)
-    product_category = models.ForeignKey(Product_category, on_delete=models.CASCADE)
+    product_category = models.ManyToManyField(Product_category)
     country = models.CharField(max_length=50)
     region_district = models.CharField(max_length=50)
     city = models.CharField(max_length=50)
     company_postal_code = models.CharField(max_length=20)
     street = models.CharField(max_length=100)
     building = models.CharField(max_length=100)
-    title = models.CharField(max_length=50)
+    title = models.CharField(max_length=50, choices=TITLE_CHOICES)
     first_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)
     department = models.CharField(max_length=100)

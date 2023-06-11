@@ -1,19 +1,128 @@
 {% extends "main/base.html" %}
+{% load crispy_forms_tags %}
 {% load static %}
+
 
 {% block content %}
 <section class="card-section">
   <div class="container">
-    <div class="card border-0 mt-3">
+    <div class="card banner border-0 mt-3">
       <div class="card-body">
         <h4 class="page-title text-center">Capital Market Authority Tenders portal</h4>
       </div>
     </div>
-    <form method="POST">
+    <div class="content-section mt-3">
+     
+      <form method="POST">
         {% csrf_token %}
-        {{ form.as_p }}
+       <fieldset class="form-group">
+        <div class="card my-3 px-3 py-2 border-0 shadow-sm">
+          <h4>General Company Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.company_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.duns_number|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.language|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.tax_jurisdiction_code|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.currency|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.vendor_category|as_crispy_field }}
+            </div>
+          </div>
+        </div>
+        <div class="card my-3 px-3 py-2 border-0 shadow-sm">
+          <h4>Address</h4>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.country|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.region_district|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.city|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.company_postal_code|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.street|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.building|as_crispy_field }}
+            </div>
+          </div>
+          
+        </div>
+        <div class="card my-3 px-3 py-2 border-0 shadow-sm">
+          <h4>Contact Information</h4>
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              {{ form.title|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.first_name|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-4">
+              {{ form.last_name|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form.department|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.function|as_crispy_field }}
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group col-md-6">
+              {{ form.phone|as_crispy_field }}
+            </div>
+            <div class="form-group col-md-6">
+              {{ form.email|as_crispy_field }}
+            </div>
+          </div>
+          
+        </div>
+        <div class="card my-3 px-3 py-2 border-0 shadow-sm">
+          <h4>Product categories</h4>
+          <div class="form-row">
+            {% for checkbox in form.product_category %}
+              {% cycle 0 1 2 3 4 as col_cycle silent %}
+              {% if col_cycle == 0 %}
+                <div class="col-md-4">
+              {% endif %}
+              <div class="form-check">
+                <label class="form-check-label">
+                  {{ checkbox }}
+                </label>
+              </div>
+              {% if col_cycle == 4 or forloop.last %}
+                </div>
+              {% endif %}
+            {% endfor %}
+          </div>
+        </div>
+        
+        
+       </fieldset>
         <button type="submit" class="btn btn-primary">Register</button>
       </form>
+    </div>
   </div>
 </section>
 {% endblock %}

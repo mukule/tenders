@@ -101,3 +101,7 @@
   background-color: var(--secondary-color); /* Set your desired button color */
 }
 
+.submit{
+  background-color: var(--primary-color);
+}
+

@@ -297,3 +297,9 @@ def register_supplier(request):
         form = SupplierForm()
 
     return render(request, 'main/supplier_registration.html', {'form': form})
+
+def procurement(request):
+    return render (request, 'main/procurement.html')
+
+def tenders(request):
+    return render(request, 'main/tenders.html')

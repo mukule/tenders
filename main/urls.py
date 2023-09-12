@@ -18,4 +18,7 @@ urlpatterns = [
     path('closed-tenders/', closed_tenders_view, name='closed-tenders'),
     path('closed-awarded-tenders/', views.closed_awarded_tenders_view, name='closed_awarded_tenders'),
     path('supplier_reg/', register_supplier, name='supplier_reg'),
+    path('procument/', procurement, name='procurement'),
+    path('tenders/', tenders, name='tenders'),
 ]
+

@@ -1,0 +1,46 @@
+{% extends "main/base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="card-section">
+  <div class="container">
+    <div class="card banner border-0 mt-3">
+      <div class="card-body">
+        <h4 class="page-title text-center">Capital Market Authority Tenders portal >> Procurement</h4>
+      </div>
+    </div>
+
+    <div class="row mt-4">
+      <div class="col-md-6">
+        <a href="{% url 'open-international-list' %}">
+          <div class="card h-100 bg-transparent border-0 square-card">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <img src="{% static 'main/images/global.png' %}" class="card-img-top" alt="Card 1 Image">
+              <div class="image-overlay d-flex justify-content-center align-items-center d-none d-md-flex">
+                <div class="image-text">
+                  <h5>Open International</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <div class="col-md-6">
+        <a href="{% url 'open-national-list' %}">
+          <div class="card h-100 bg-transparent border-0 square-card">
+            <div class="card-body d-flex justify-content-center align-items-center">
+              <img src="{% static 'main/images/kenya.png' %}" class="card-img-top" alt="Card 2 Image">
+              <div class="image-overlay d-flex justify-content-center align-items-center d-none d-md-flex">
+                <div class="image-text">
+                  <h5>Open National</h5>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
